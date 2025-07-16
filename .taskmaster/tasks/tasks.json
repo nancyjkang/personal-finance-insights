@@ -1,0 +1,184 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Next.js Project with TypeScript",
+        "description": "Set up the foundational Next.js project structure with TypeScript, essential dependencies, and development environment configuration",
+        "details": "Create Next.js project using 'npx create-next-app@latest --typescript --tailwind --eslint --app'. Install additional dependencies: @google-cloud/sheets, googleapis, next-auth, @types/node. Configure tsconfig.json for strict type checking. Set up basic folder structure: src/components, src/lib, src/types, src/app. Configure environment variables structure in .env.example.",
+        "testStrategy": "Verify project builds successfully with 'npm run build'. Test development server starts without errors. Validate TypeScript compilation passes with 'npm run type-check'.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Next.js Project Structure",
+            "description": "Initialize a new Next.js project with TypeScript, Tailwind CSS, and ESLint using create-next-app",
+            "dependencies": [],
+            "details": "Run 'npx create-next-app@latest lumifin-finance-tracker --typescript --tailwind --eslint --app --src-dir' to create the project foundation. Configure the project with App Router, TypeScript strict mode, and Tailwind CSS for styling.\n<info added on 2025-07-16T21:48:44.856Z>\nProject creation completed successfully. Next.js application initialized with TypeScript, Tailwind CSS, ESLint, and App Router enabled. Directory structure created with src folder organization. Ready to proceed with dependency installation and configuration.\n</info added on 2025-07-16T21:48:44.856Z>",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Install and Configure Essential Dependencies",
+            "description": "Install required packages for Google Sheets integration, authentication, and development tools",
+            "dependencies": [
+              1
+            ],
+            "details": "Install core dependencies: googleapis, next-auth, @types/node, @types/react, @types/react-dom. Install development dependencies: @typescript-eslint/eslint-plugin, @typescript-eslint/parser, prettier, eslint-config-prettier. Configure package.json scripts for build, dev, lint, and type-check commands.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure TypeScript and Development Tools",
+            "description": "Set up TypeScript configuration with strict type checking and configure ESLint and Prettier",
+            "dependencies": [
+              2
+            ],
+            "details": "Configure tsconfig.json with strict type checking, proper path mappings, and Next.js optimizations. Set up ESLint configuration with TypeScript rules and Prettier integration. Configure .eslintrc.json and .prettierrc files. Add VSCode settings for consistent formatting and linting.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create Project Folder Structure and Environment Setup",
+            "description": "Establish organized folder structure and environment variable configuration for the application",
+            "dependencies": [
+              3
+            ],
+            "details": "Create folder structure: src/components (UI components), src/lib (utilities and API clients), src/types (TypeScript definitions), src/app (Next.js app router pages). Set up .env.example with required environment variables: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, NEXTAUTH_SECRET, NEXTAUTH_URL. Create initial type definitions for User, Transaction, and API responses.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Configure Google OAuth 2.0 Authentication",
+        "description": "Implement Google OAuth 2.0 authentication using NextAuth.js to secure user access and enable Google API integration",
+        "details": "Set up Google Cloud Console project, enable Google Sheets API and OAuth 2.0. Configure NextAuth.js with GoogleProvider in app/api/auth/[...nextauth]/route.ts. Create authentication middleware to protect routes. Implement session management with JWT tokens. Configure scopes for Google Sheets API access. Set up sign-in/sign-out components with proper error handling.",
+        "testStrategy": "Test Google Sign-In flow end-to-end. Verify session persistence across page refreshes. Test sign-out functionality. Validate protected routes redirect unauthenticated users to login.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement Google Sheets API Integration",
+        "description": "Create service layer for Google Sheets API to read transactions and account settings data with proper error handling and rate limiting",
+        "details": "Create GoogleSheetsService class using googleapis library. Implement methods: getTransactions(), getAccountSettings(), updateTransaction(). Configure OAuth2 client with user tokens. Handle API quotas and rate limiting with exponential backoff. Implement data validation for sheet structure (Date, Payer/Payee, Amount, Account, Category, Description, Tags). Add error handling for invalid sheet formats and network issues.",
+        "testStrategy": "Test reading from sample Google Sheet with expected structure. Verify error handling for malformed data. Test rate limiting behavior. Validate data type conversion and sanitization.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Create Transaction Dashboard with Filtering and Sorting",
+        "description": "Build responsive transactions dashboard with table display, filtering by date/category/amount, and sorting capabilities",
+        "details": "Create TransactionsDashboard component with shadcn/ui Table. Implement client-side filtering: date range picker, category dropdown, amount range slider. Add sorting by all columns (Date, Payer/Payee, Amount, Account, Category). Use React hooks for state management (useState, useEffect). Implement pagination for large datasets. Add loading states and error boundaries. Make responsive with Tailwind CSS breakpoints.",
+        "testStrategy": "Test filtering with various combinations of criteria. Verify sorting works correctly for all data types. Test pagination with large datasets. Validate responsive design on mobile devices.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Develop Monthly Reports with Income/Expense Analysis",
+        "description": "Create monthly reports showing total income, expenses, savings, and category breakdowns with data visualization",
+        "details": "Create MonthlyReport component with month/year selector. Implement data aggregation functions: calculateIncome(), calculateExpenses(), calculateSavings(), getCategoryTotals(). Use Chart.js or Recharts for pie charts showing category distribution. Display summary cards with key metrics. Add month-over-month comparison. Handle edge cases like negative values and empty datasets.",
+        "testStrategy": "Test calculations with sample transaction data. Verify chart rendering with various data sets. Test month navigation and data updates. Validate calculations match expected results.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Dynamic Transaction Categorization System",
+        "description": "Build intelligent categorization system that suggests categories based on transaction data and allows user customization",
+        "details": "Create CategoryManager component with three category types: Income, Expense, Transfers. Implement algorithm to analyze existing transaction descriptions and suggest categories using keyword matching. Provide UI for users to review and modify suggested categories. Create CategoryEditor modal for adding/editing/deleting categories. Store category preferences in localStorage or user session. Implement batch category updates for similar transactions.",
+        "testStrategy": "Test category suggestion algorithm with various transaction descriptions. Verify user can modify categories successfully. Test batch update functionality. Validate category persistence across sessions.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Build Account Settings Management Interface",
+        "description": "Create interface to display and manage account settings from Google Sheets with real-time synchronization",
+        "details": "Create AccountSettings component to display account names and initial balances. Implement real-time sync with Google Sheets for settings changes. Add form validation for balance updates. Create AddAccount and EditAccount modals with proper form handling. Implement optimistic updates with rollback on failure. Add confirmation dialogs for destructive actions.",
+        "testStrategy": "Test account settings display and updates. Verify real-time sync with Google Sheets. Test form validation and error handling. Validate optimistic updates work correctly.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Transaction Category Updates with Google Sheets Sync",
+        "description": "Enable users to update transaction categories with automatic synchronization back to Google Sheets",
+        "details": "Extend GoogleSheetsService with updateTransactionCategory() method. Create inline editing for category column in transactions table. Implement dropdown with existing categories plus 'Add New' option. Add batch update functionality for multiple transactions. Handle conflicts when multiple users edit simultaneously. Implement queue system for API calls to avoid rate limiting.",
+        "testStrategy": "Test individual category updates sync to Google Sheets. Verify batch updates work correctly. Test conflict resolution scenarios. Validate rate limiting doesn't cause failures.",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Enhance Security and Error Handling",
+        "description": "Implement comprehensive security measures, input validation, and robust error handling throughout the application",
+        "details": "Implement CSRF protection and secure headers. Add input sanitization and validation for all user inputs. Create centralized error handling with user-friendly error messages. Implement API rate limiting and request throttling. Add logging for security events and errors. Secure environment variables and API keys. Implement session timeout and refresh logic. Add audit trail for data modifications.",
+        "testStrategy": "Test security headers and CSRF protection. Verify input validation prevents XSS and injection attacks. Test error handling scenarios. Validate rate limiting works correctly.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Deploy Application and Configure Production Environment",
+        "description": "Deploy the application to Vercel with proper environment configuration and monitoring setup",
+        "details": "Configure Vercel deployment with environment variables for Google API credentials. Set up custom domain and SSL certificates. Configure build optimization and caching strategies. Implement health checks and monitoring. Create deployment documentation with setup instructions. Configure automatic deployments from main branch. Set up error tracking with Sentry or similar. Add performance monitoring and analytics.",
+        "testStrategy": "Test production deployment works correctly. Verify environment variables are properly configured. Test SSL certificates and custom domain. Validate monitoring and error tracking functionality.",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-16T21:29:53.061Z",
+      "updated": "2025-07-16T21:49:19.715Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+Project Name
+    Lumifin Personal Finance Tracker v1.0
+
+Overview
+    Build a secure web application that connects to a user’s Google Sheets to display and manage personal finance data, including transactions and account settings.
+
+Goals
+    Allow users to view their transactions and account settings from a Google Sheet.
+    Provide a user-friendly interface for browsing, filtering, and (optionally) editing data.
+    Ensure secure authentication and data access.
+
+Features
+    1. Google Sheets Integration
+        Authenticate with Google (OAuth 2.0 or Service Account).
+        Read transactions and account settings from a specified Google Sheet.
+        (Optional) Write updates back to the sheet.
+    2. User Authentication
+        Support Google Sign-In for user authentication.
+        Restrict access to authorized users only.
+    3. Transactions Dashboard
+        Display a list/table of transactions.
+        Display monthly report with total income, expense, savings, and the total for each category.
+        Support filtering and sorting (by date, amount, category, etc.).
+    4. Account Settings Page
+        Display account settings from the sheet.
+    5. Transaction Category
+        Initially, suggest a list of categories for Income, Expense and Transfers respectively based on transactions data. 
+        Finalize the list of categories based on user input.
+        Allow the user to update the category for each transaction. 
+    6. Responsive UI
+        Mobile-friendly design.
+        Clean, modern interface.
+    7. Security
+        Protect API keys and sensitive data.
+        Ensure only authenticated users can access their data.
+    7. Deployment
+        Deploy the app to a cloud platform (Vercel, Netlify, or similar).
+        Provide setup instructions for environment variables and Google API credentials.
+
+Technical Requirements
+    Frontend: React (preferred), Next.js, or similar.
+    Backend: Node.js/Express (for secure API key handling), or serverless functions.
+    Google Sheets API: Use official Google APIs for data access.
+    Authentication: Google OAuth 2.0 (preferred).
+    Deployment: Vercel, Netlify, or similar.
+
+Stretch Goals (Optional)
+    Data visualization (charts, graphs).
+    Export data (CSV, PDF).
+    Multi-user support.
+    Notifications or reminders.
+
+Out of Scope
+    Direct integration with banks or financial institutions.
+    Handling of sensitive financial data beyond what’s in the user’s Google Sheet.
+
+Google Sheet Structure
+    Sheet 1: Transactions
+        Date
+        Payer/Payee
+        Amount
+        Account
+        Category (optional)
+        Description  (optional)
+        Tags (optional)
+        
+    Sheet 2: Account Settings
+        Account Name
+        Initial Balance ($)
+
+Success Criteria
+    User can authenticate and see their transactions and settings.
+    Data is loaded from Google Sheets in real time.
+    App is secure and responsive.
+
