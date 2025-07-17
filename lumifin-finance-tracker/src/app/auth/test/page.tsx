@@ -1,7 +1,16 @@
 'use client';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { SessionStatus } from '@/components/auth/SessionStatus';
+import dynamicImport from 'next/dynamic';
+
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
+// Dynamically import components to avoid SSR issues
+const DynamicSessionStatus = dynamicImport(() => import('@/components/auth/SessionStatus').then(mod => ({ default: mod.SessionStatus })), {
+  ssr: false,
+  loading: () => <div>Loading session status...</div>
+});
 
 export default function AuthTestPage() {
   const { data: session, status } = useSession();
@@ -24,7 +33,7 @@ export default function AuthTestPage() {
             <strong>Signed in as:</strong> {session.user?.email}
           </div>
           
-          <SessionStatus />
+          <DynamicSessionStatus />
           
           <div className="bg-gray-100 p-4 rounded">
             <h3 className="font-semibold mb-2">Session Data:</h3>

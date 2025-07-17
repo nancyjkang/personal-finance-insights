@@ -1,5 +1,8 @@
 import { requireAuth } from '@/lib/auth/server';
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   const session = await requireAuth();
 

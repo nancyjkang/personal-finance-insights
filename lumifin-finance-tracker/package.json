@@ -11,7 +11,13 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify-google": "node scripts/verify-google-setup.js"
+    "verify-google": "node scripts/verify-google-setup.js",
+    "build:static": "BUILD_STANDALONE=true next build",
+    "export": "next export",
+    "deploy:prepare": "node scripts/deploy-hostinger.js",
+    "deploy:static": "node scripts/deploy-hostinger.js --type=static",
+    "deploy:server": "node scripts/deploy-hostinger.js --type=server",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { AuthenticationHeader } from '@/components/auth';
+import { ClientAuthHeader } from '@/components/auth/ClientAuthHeader';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
             <div className="flex items-center">
               <h1 className="text-xl font-semibold text-gray-900">Lumifin Finance Tracker</h1>
             </div>
-            <AuthenticationHeader />
+            <ClientAuthHeader />
           </div>
         </div>
       </header>
