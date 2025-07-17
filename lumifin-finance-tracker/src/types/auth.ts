@@ -8,6 +8,8 @@ declare module 'next-auth' {
       googleId: string;
     } & DefaultSession['user'];
     accessToken?: string;
+    expiresAt?: number;
+    error?: string;
   }
 
   interface User {
@@ -20,6 +22,10 @@ declare module 'next-auth/jwt' {
   interface JWT {
     googleId?: string;
     accessToken?: string;
+    refreshToken?: string;
+    expiresAt?: number;
+    tokenType?: string;
+    error?: string;
   }
 }
 
